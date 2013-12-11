@@ -1,0 +1,258 @@
+.tasks__wrapper
+  @extends .wrapper
+  padding 10px 10px 0px 10px
+  clearfix()
+
+.tasks__right
+  @extends .wrapper
+  margin-bottom 20px
+
+.tasks__wrapper
+  margin-bottom 20px
+
+@media screen and (max-width: 800px)
+  .tasks__right
+    display block
+
+@media screen and (min-width: 800px)
+  .tasks__container
+    width responsive(540, 940)
+    float left
+    margin-right responsive(20, 940)
+
+
+  .tasks__right
+    width responsive(380, 940)
+    float right
+    display block
+
+.tasks__create
+  .form-group
+    background #ffffff
+    margin-bottom 10px
+    border-radius 3px
+    padding 10px
+    clearfix()
+    strong
+      color $colorTypePrimary
+      font-weight 800
+      font-size 16px
+      text-transform uppercase
+      width responsive(100, 360)
+      margin-right responsive(10, 360)
+      text-align right
+      display block
+      float left
+      padding-top 2px
+    input
+      @extends .input--clear
+
+.task__create__title
+  display block
+  width responsive(250, 360)
+  float left
+
+//==============================================================================
+//  Estimate input | ^estimate ^input ^task
+//==============================================================================
+.input__estimate__label
+  width responsive(100, 360)
+  margin-right responsive(10, 360)
+  padding-top 2px
+
+.input__estimate__hrs-input
+.input__estimate__mins-input
+  width responsive(35, 360)
+  float left
+  margin 0px 10px 0px 0px
+  text-align right
+
+.input__estimate__hrs-label
+  margin-right responsive(24, 360)
+
+.input__estimate__hrs-label
+.input__estimate__mins-label
+  padding-top 2px
+  text-transform uppercase
+  width responsive(25, 360)
+  float left
+
+
+.tasks__title
+  font-size 14px
+  margin-bottom 10px
+  text-transform uppercase
+  text-align center
+
+.task
+  background #ffffff
+  padding 10px
+  margin-bottom 10px
+  border-radius 3px
+  clearfix()
+  h3
+    color #3d4349
+    font-size 18px
+  strong
+    color #a2a0a0
+    font-size 14px
+
+  &.is-overdue
+    .btn
+      background $colorRed !important
+
+.task__desc
+  width responsive(290, 500)
+  margin-right responsive(10, 500)
+  float left
+
+.task__action
+  width responsive(200, 500)
+  float left
+  .btn
+    display block
+    width responsive(90, 200)
+    float right
+
+.task__time
+  font-size 16px
+  font-weight 800
+  padding-top 13px
+  display block
+  width responsive(100, 200)
+  float left
+  text-align right
+  margin-right responsive(10, 200)
+
+//==============================================================================
+//  Task in progress | ^progress ^task
+//==============================================================================
+.task-current
+  padding 40px 0px 70px 0px
+
+.task-current__title
+.task-current__project
+  text-align center
+  margin 0 auto
+
+.task-current__title
+  margin-bottom 100px
+  color $colorTypePrimary
+  display block
+  @extends .input--clear
+  background $colourBG
+  font-size 29px !important
+  font-weight 800
+
+.task-current__pause
+.task-current__play
+.task-current__finish
+  width 100%
+  margin-bottom 10px
+
+.task-current__finish
+  @extends .btn--primary
+
+.task-current__time
+  color #ffffff
+  font-size 28px
+
+//========================================================
+//  Progress
+//========================================================
+.task-current__progress
+  width 100%
+  height 8px
+  display block
+  background #e7e4e4
+  margin-bottom 100px
+  position relative
+  border-radius 3px
+
+@media screen and (max-width: 680px)
+  .task-current__progress
+    width 80%
+    margin 0 auto 90px auto
+    clearfix()
+
+.task-current__progress-bar
+  background $colorBlue
+  transition background .3s
+  height 8px
+  display block
+  position relative
+  border-radius 3px
+  width 0%
+  &::after
+    position absolute
+    width 25px
+    height 25px
+    display block
+    border-radius 50%
+    content ''
+    background #e7e4e4
+    border 6px solid $colorBlue
+    transition border .3s
+    top -16px
+    right -17px
+
+.is-active
+  .task-current__progress-bar
+    background-color $colorGreen
+    &::after
+      border-color $colorGreen
+
+.is-overdue
+  .task-current__progress-bar
+    background $colorRed
+    &::after
+      border-color $colorRed
+
+
+.task-current__time
+.task-current__estimate
+  position absolute
+  text-align center
+  top -45px
+  right 0px
+  width 200px
+  margin-right -100px
+
+.task-current__time
+  color $colorTypePrimary
+  font-size 18px
+  font-weight 800
+
+.task-current__estimate
+  color #a2a0a0
+  top 34px
+
+@media $mediaTablet
+  .task-current__progress
+    margin-bottom 150px
+
+  .task-current__title
+    margin-bottom 160px
+
+.task-current__actions
+  clearfix()
+
+@media $mediaTablet
+  .task-current__actions
+    max-width 460px
+    margin 0 auto
+
+  .task-current__pause
+  .task-current__play
+    width responsive(220, 460)
+    margin-right responsive(15, 460)
+    float left
+
+  .task-current__finish
+    width responsive(220, 460)
+    float left
+
+
+.completed-tasks
+  .task__time
+    float right

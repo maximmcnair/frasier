@@ -1,0 +1,19 @@
+.home__desc
+  h1
+    margin-bottom 55px
+.home__right
+  @extends .wrapper
+  display block
+  margin-top 60px
+
+@media screen and (min-width: 800)
+  .home__desc
+    float left
+    width responsive(540, 940)
+    margin-right responsive(20, 940)
+    h1
+      margin-top 40px
+  .home__right
+    width responsive(380, 940)
+    float left
+    margin-top 160px

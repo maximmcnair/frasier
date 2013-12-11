@@ -1,0 +1,61 @@
+.btn
+button
+  margin 0
+  background $colorBlue
+  padding 10px
+  font-size 18px
+  display inline-block
+  border-radius 3px
+  color #ffffff
+  border 0px
+  cursor pointer
+  user-select(none)
+  text-align center
+  font-family $primaryTypeface
+  font-weight 600
+  transition background ease-out .3s
+  outline none
+  &:hover
+  &:focus
+    background-color lighten($colorBlue, 20%)
+    color #ffffff
+    outline none
+  &:active
+    background-color darken($colorBlue, 15%)
+    color #ffffff
+    transform translate3d(0, 1px, 0)
+
+.btn--sm
+  @extends .btn
+  font-size 16px
+  padding 10px
+  display inline-block
+  width auto
+
+.btn--lrg
+  padding 20px
+  display block
+  width 100%
+
+.btn--primary
+  background $colorBlue
+  color #ffffff
+  &:hover
+    background lighten($colorBlue, 5%)
+
+.btn--active
+  background $colorGreen
+  color #ffffff
+  &:hover
+    background lighten($colorGreen, 5%)
+
+.btn--error
+  background $colorOverdue
+  color #ffffff
+  &:hover
+    background lighten($colorOverdue, 5%)
+
+.btn--inverse
+  background #3d4349
+  &:hover
+    background #363e45

@@ -1,0 +1,32 @@
+<input type="text" value="{{task.title}}" class="task-current__title">
+
+<!-- <div class="task-current__progress active">
+  <div class="task-current__progress-bar">
+    <strong class="current-time js-time-current task-current__time"> {{timePretty(task.time)}} </strong>
+    <strong class="estimate-time js-time-estimate task-current__estimate"> {{timePretty(task.estimate)}} </strong>
+  </div>
+</div> -->
+
+<div class="task-current__progress" ng-class="{'is-overdue': overdue, 'is-active': task.active}" ng-if="task.estimate > 0">
+  <div class="task-current__progress-bar" role="progressbar" style="width: {{progress}}%;">
+    <span class="task-current__time">{{timePretty(task.time)}}</span>
+  </div>
+  <div ng-if="task.estimate > 0" class="task-current__estimate">{{timePretty(task.estimate)}}</div>
+</div>
+
+<!-- <dl>
+  <dt>Time:</dt>
+  <dd>{{timePretty(task.time)}}</dd>
+</dl>
+
+<dl ng-if="task.estimate > 0">
+  <dt>Estimate:</dt>
+  <dd>{{timePretty(task.estimate)}}</dd>
+</dl> -->
+
+<div class="task-current__actions">
+  <a class="btn btn--lrg btn--primary task-current__pause" ng-click="pause()" ng-if="task.active">Pause</a>
+  <a class="btn btn--lrg btn--active task-current__play" ng-click="play()" ng-if="!task.active">Play</a>
+  <a class="btn btn--lrg btn--inverse task-current__finish" ng-click="finish()">Finish</a>
+  <a class="small-centred" ng-click="stop()">Start another task</a>
+</div>

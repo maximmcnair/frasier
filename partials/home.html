@@ -1,0 +1,63 @@
+<!-- <div class="jumbotron">
+  <h1>Let’s finish your todo list in record time</h1>
+  <p>Talllies uses short deadlines to aim you to finish your work faster. Using Parkinson’s Law, that dictates a task will swell in complexity to the time allotted for its completion, we break up our tasks into shorter segments and give ourselfs imminent deadlines for each. This forces us to ignore minutia and focus on the important.</p>
+  <p><a class="btn btn-primary btn-lg" role="button" href="#/tasks">Create your first task</a></p>
+</div> -->
+
+<section class="home__desc">
+  <h1>Talllies uses psychological observations to help you work faster.</h1>
+
+  <h2>Parkison’s Law</h2>
+  <p>This observation dictates a task will swell in complexity to the time allotted for its completion, we push you to create short and imminent deadlines for each task. This forces us to ignore minutia and focus on the important.</p>
+
+  <h2>Taking Breaks & The Ultradian Rhythm</h2>
+  <p>The basic understanding is that our human minds can focus on any given task for 90-120 minutes. Afterwards, a 20-30 minute break is required for us to get the renewal to achieve high performance for our next task again.</p>
+</section>
+
+<!-- <form class="home__task">
+  <h3>ADD YOUR FIRST TODO TO GET STARTED</h3>
+  <label>
+    <strong>TASK TITLE</strong>
+    <input type="text" placeholder="e.g. Setup mailing list">
+  </label>
+  <div>
+    <label>
+      <strong>ESTIMATE</strong>
+      <input type="text" placeholder="0">
+      <small>Hrs</small>
+    </label>
+    <label>
+      <input type="text" placeholder="00">
+      <small>Mins</small>
+    </label>
+  </div>
+  <a class="btn btn-primary btn-lg" role="button" href="#/tasks">Create your first task</a>
+</form> -->
+
+
+<section class="home__right">
+  <h2>Create a Task</h2>
+
+  <form ng-submit="addTask()" class="tasks__create">
+    <div class="form-group">
+      <label>
+        <strong>Title</strong>
+        <input type="text" ng-model="newTask.title" placeholder="e.g. Setup mailing list" class="task__create__title">
+      </label>
+    </div>
+
+    <div class="form-group input__estimate">
+      <label>
+        <strong class="input__estimate__label">Estimate</strong>
+        <input type="text" ng-model="newTask.estimateHrs" placeholder="0" class="input__estimate__mins-input">
+        <span class="input__estimate__hrs-label">Hrs</span>
+      </label>
+      <label>
+        <input type="text" ng-model="newTask.estimateMins" placeholder="0" class="input__estimate__mins-input">
+        <span class="input__estimate__mins-label">Mins</span>
+      </label>
+    </div>
+
+    <input class="btn btn--active btn--lrg" type="submit" value="Add Task">
+  </form>
+</section>
