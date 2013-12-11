@@ -95,7 +95,7 @@ input:-ms-input-placeholder{color:#a2a0a0}
 .input__estimate__hrs-label{margin-right:6.666666666666667%}
 .input__estimate__hrs-label,.input__estimate__mins-label{padding-top:2px;text-transform:uppercase;width:6.944444444444445%;float:left}
 .tasks__title{font-size:14px;margin-bottom:10px;text-transform:uppercase;text-align:center}
-.task{background:#fff;padding:10px;margin-bottom:10px;-webkit-border-radius:3px;border-radius:3px;zoom:1;}
+.task{background:#fff;padding:10px;margin-bottom:10px;-webkit-border-radius:3px;border-radius:3px;zoom:1;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
 .task:before,.task:after{content:"";display:table}
 .task:after{clear:both}
 .task h3{color:#3d4349;font-size:18px}

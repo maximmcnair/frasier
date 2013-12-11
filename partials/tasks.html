@@ -29,7 +29,7 @@
 
   <section class="tasks__wrapper" ng-if="false">
     <h3 class="tasks__title">Tasks</h3>
-    <ul class="list-no-style">
+    <ul class="list-no-style" ui-sortable ng-model="tasks">
       <li ng-repeat="task in tasks" class="task" ng-class="{'is-overdue': task.time > task.estimate}">
         <div class="task__desc">
           <h3>{{task.title}}</h3>
@@ -52,7 +52,7 @@
 
   <section class="tasks__wrapper">
     <h3 class="tasks__title">Today Todos</h3>
-    <ul class="list-no-style">
+    <ul class="list-no-style" ui:sortable ng:model="todayTasks">
       <li ng-repeat="task in todayTasks" class="task" ng-class="{'is-overdue': task.time > task.estimate}">
         <div class="task__desc">
           <h3>{{task.title}}</h3>

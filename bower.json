@@ -1,0 +1,23 @@
+{
+  "name": "frasier",
+  "version": "0.0.0",
+  "main": "path/to/main.css",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.2.3",
+    "angular-ui-sortable": "0.0.1"
+  },
+  "homepage": "https://github.com/maximmcnair/frenchmoon",
+  "authors": [
+    "Maxim McNair <mail@maximmcnair.com>"
+  ],
+  "license": "MIT"
+}
