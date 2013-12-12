@@ -74,7 +74,7 @@ input:-ms-input-placeholder{color:#a2a0a0}
 100%{opacity:1;-ms-filter:none;filter:none;-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
 }.home__desc h1{margin-bottom:55px}
 .home__right{display:block;margin-top:60px}
-@media screen and (min-width: 800){.home__desc{float:left;width:57.446808510638306%;margin-right:2.127659574468085%;}
+@media screen and (min-width: 800px){.home__desc{float:left;width:57.446808510638306%;margin-right:2.127659574468085%;}
 .home__desc h1{margin-top:40px}
 .home__right{width:40.42553191489361%;float:left;margin-top:160px}
 }.tasks__wrapper{padding:10px 10px 0 10px;zoom:1}

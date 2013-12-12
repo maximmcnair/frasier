@@ -16,7 +16,7 @@
         <span class="input__estimate__hrs-label">Hrs</span>
       </label>
       <label>
-        <input type="text" ng-model="newTask.estimateMins" value="0" class="input__estimate__mins-input">
+        <input type="text" ng-model="newTask.estimateMins" value="00" class="input__estimate__mins-input">
         <span class="input__estimate__mins-label">Mins</span>
       </label>
     </div>
@@ -29,8 +29,9 @@
 
   <section class="tasks__wrapper" ng-if="false">
     <h3 class="tasks__title">Tasks</h3>
-    <ul class="list-no-style" ui-sortable ng-model="tasks">
-      <li ng-repeat="task in tasks" class="task" ng-class="{'is-overdue': task.time > task.estimate}">
+    <!-- ui-sortable  -->
+    <ul class="list-no-style" ng-model="tasks">
+      <li ng-repeat="task in tasks track by $index" class="task" ng-class="{'is-overdue': task.time > task.estimate}">
         <div class="task__desc">
           <h3>{{task.title}}</h3>
           <strong>Estimate {{timePretty(task.estimate)}}</strong>
@@ -49,10 +50,10 @@
     </ul>
   </section>
 
-
   <section class="tasks__wrapper">
     <h3 class="tasks__title">Today Todos</h3>
-    <ul class="list-no-style" ui:sortable ng:model="todayTasks">
+    <!-- ui:sortable  -->
+    <ul class="list-no-style" ng:model="todayTasks">
       <li ng-repeat="task in todayTasks" class="task" ng-class="{'is-overdue': task.time > task.estimate}">
         <div class="task__desc">
           <h3>{{task.title}}</h3>
@@ -65,7 +66,7 @@
           <!-- <a class="btn btn-primary">Finish</a> -->
         </div>
       </li>
-      <li ng-if="tasks.length === 0" class="task">
+      <li ng-if="todayTasks.length === 0" class="task">
         <h3>You don't have any Tasks</h3>
         <strong>Add a task on the right to get started</strong>
       </li>
@@ -86,5 +87,4 @@
       </li>
     </ul>
   </section>
-
 </section>

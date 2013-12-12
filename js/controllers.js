@@ -21,6 +21,8 @@ angular.module('myApp.controllers', [])
         $scope.newTask.title
       , hrsToMillSec($scope.newTask.estimateHrs) + minsToMillSec($scope.newTask.estimateMins)
       )
+
+      $scope.newTask = null
     }
 
 
@@ -48,7 +50,8 @@ angular.module('myApp.controllers', [])
     if($scope.task === undefined) $location.path('/tasks')
 
     // Make task active
-    $scope.task.active = true
+    // $scope.task.active = true
+    tasksFactory.updateTask($scope.task, {active: true})
 
     // Has task been active before?
     // var taskActive = ($scope.task.time === 0 ? false : true)
@@ -71,6 +74,7 @@ angular.module('myApp.controllers', [])
       if($scope.task.active === true){
         // Increment time
         $scope.task.time += 1000
+        tasksFactory.updateTask($scope.task, {time: $scope.task.time})
 
         // Update progress
         if($scope.task.estimate < $scope.task.time){
@@ -98,28 +102,35 @@ angular.module('myApp.controllers', [])
     // Pause functionality
     $scope.pause = function () {
       console.log('pause')
-      $scope.task.active = false
+      // $scope.task.active = false
+      tasksFactory.updateTask($scope.task, {active: false})
     }
 
     // Play functionality
     $scope.play = function () {
       console.log('play')
-      $scope.task.active = true
+      // $scope.task.active = true
+      tasksFactory.updateTask($scope.task, {active: true})
       increment()
     }
 
     // Finish functionality
     $scope.finish = function () {
       console.log('finish')
-      $scope.task.active = false
-      $scope.task.complete = true
+      // $scope.task.active = false
+      // $scope.task.complete = true
+      tasksFactory.updateTask($scope.task, {
+        active: false
+      , complete: true
+      })
       $location.path('/tasks')
     }
 
     // Stop functionality
     $scope.stop = function () {
       console.log('stop')
-      $scope.task.active = false
+      // $scope.task.active = false
+      tasksFactory.updateTask($scope.task, {active: false})
       $location.path('/tasks')
     }
 
