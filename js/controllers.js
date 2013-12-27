@@ -15,6 +15,7 @@ angular.module('myApp.controllers', [])
   .controller('TasksCtrl', function($scope, $http, $filter, tasksFactory) {
 
     $scope.tasks = tasksFactory.getTasks()
+    $scope.completedTasks = tasksFactory.getCompleted()
 
     $scope.sortableOptions = {
       stop: function(e, ui) {

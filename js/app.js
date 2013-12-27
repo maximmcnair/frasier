@@ -25,3 +25,11 @@ config(['$routeProvider', function($routeProvider) {
     })
   $routeProvider.otherwise({redirectTo: '/'})
 }])
+
+// Add clone functionality to array
+Array.prototype.clone = function() { return this.slice(0); }
+
+Array.prototype.extend = function (other_array) {
+    /* you should include a test to check whether other_array really is an array */
+    other_array.forEach(function(v) {this.push(v)}, this);
+}

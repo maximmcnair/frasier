@@ -28,9 +28,9 @@
 <section class="tasks__container">
 
   <section class="tasks__wrapper">
-    <!--  ng-if="false" -->
+    <!--   -->
     <h3 class="tasks__title">Tasks</h3>
-    <ul class="list-no-style" ng-model="tasks" ui-sortable="sortableOptions">
+    <ul class="list-no-style" ng-model="tasks" ui-sortable="sortableOptions" ng-if="false">
       <li ng-repeat="task in tasks track by $index" class="task" ng-class="{'is-overdue': task.time > task.estimate}">
         <div class="task__desc">
           <h3>{{task.title}}</h3>
@@ -52,8 +52,8 @@
 
   <section class="tasks__wrapper">
     <h3 class="tasks__title">Today Todos</h3>
-    <ul class="list-no-style" ng:model="todayTasks" ui:sortable>
-      <li ng-repeat="task in todayTasks" class="task" ng-class="{'is-overdue': task.time > task.estimate}">
+    <ul class="list-no-style" ng-model="tasks" ui-sortable="sortableOptions">
+      <li ng-repeat="task in tasks track by $index" class="task" ng-class="{'is-overdue': task.time > task.estimate}">
         <div class="task__desc">
           <h3>{{task.title}}</h3>
           <strong>Estimate {{timePretty(task.estimate)}}</strong>

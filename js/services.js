@@ -6,7 +6,7 @@
 // Demonstrate how to register services
 // In this case it is a simple value service.
 angular.module('myApp.services', [])
-  .factory('tasksFactory', function (taskStorage, $rootScope) {
+  .factory('tasksFactory', function (taskStorage, $rootScope, $filter) {
     var factory = {}
 
     // var tasks =
@@ -17,9 +17,19 @@ angular.module('myApp.services', [])
     //   ]
 
     var tasks = taskStorage.get()
+    , uncompletedTasks = $filter('filter')(tasks, {complete: false})
+    , completedTasks = $filter('filter')(tasks, {complete: true})
+
+    // factory.get = function () {
+    //   return tasks
+    // }
 
     factory.getTasks = function () {
-      return tasks
+      return uncompletedTasks
+    }
+
+    factory.getCompleted = function () {
+      return completedTasks
     }
 
     factory.getTask = function (id) {
@@ -65,7 +75,20 @@ angular.module('myApp.services', [])
     }
 
     factory.update = function () {
+      console.log('tasks:', tasks)
+      // Create cloned data
+      var a = uncompletedTasks.clone()
+        , b = completedTasks.clone()
+
+      // Add b to a
+      a.extend(b)
+
+      // Replace tasks with a
+      tasks = a
+
+      // Save updated data
       taskStorage.put(tasks)
+      console.log('tasks:', tasks)
     }
 
     return factory
