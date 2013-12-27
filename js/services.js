@@ -64,6 +64,10 @@ angular.module('myApp.services', [])
       taskStorage.put(tasks)
     }
 
+    factory.update = function () {
+      taskStorage.put(tasks)
+    }
+
     return factory
   })
   .factory('taskStorage', function () {

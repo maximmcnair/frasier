@@ -16,6 +16,14 @@ angular.module('myApp.controllers', [])
 
     $scope.tasks = tasksFactory.getTasks()
 
+    $scope.sortableOptions = {
+      stop: function(e, ui) {
+        // console.log(e, ui)
+        console.log('Sorted tasks: ', _.pluck($scope.tasks, 'title'))
+        tasksFactory.update()
+      }
+    };
+
     $scope.addTask = function () {
       tasksFactory.createTask(
         $scope.newTask.title
@@ -28,15 +36,15 @@ angular.module('myApp.controllers', [])
 
     $scope.timePretty = timePretty
 
-    $scope.todayTasks = $filter('filter')($scope.tasks, {complete: false})
-    $scope.completedTasks = $filter('filter')($scope.tasks, {complete: true})
+    // $scope.todayTasks = $filter('filter')($scope.tasks, {complete: false})
+    // $scope.completedTasks = $filter('filter')($scope.tasks, {complete: true})
 
 
-    $scope.$watch('tasks', function () {
-      console.log($scope.tasks)
-      $scope.todayTasks = $filter('filter')($scope.tasks, {complete: false})
-      $scope.completedTasks = $filter('filter')($scope.tasks, {complete: true})
-    }, true)
+    // $scope.$watch('tasks', function () {
+    //   console.log($scope.tasks)
+    //   $scope.todayTasks = $filter('filter')($scope.tasks, {complete: false})
+    //   $scope.completedTasks = $filter('filter')($scope.tasks, {complete: true})
+    // }, true)
 
   })
 //========================================================
