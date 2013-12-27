@@ -30,3 +30,13 @@
   <a class="btn btn--lrg btn--inverse task-current__finish" ng-click="finish()">Finish</a>
   <a class="small-centred" ng-click="stop()">Start another task</a>
 </div>
+
+<div>
+  <h1>Next task</h1>
+  <div ng-model="nextTask" class="task" ng-click="startNextTask()">
+    <div class="task__desc">
+      <h3>{{nextTask.title}}</h3>
+      <strong>Estimate {{timePretty(nextTask.estimate)}}</strong>
+    </div>
+  </div>
+</div>

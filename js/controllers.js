@@ -62,6 +62,9 @@ angular.module('myApp.controllers', [])
     // $scope.task.active = true
     tasksFactory.updateTask($scope.task, {active: true})
 
+    // Get next task
+    $scope.nextTask = tasksFactory.getNextTask($routeParams.taskId)
+
     // Has task been active before?
     // var taskActive = ($scope.task.time === 0 ? false : true)
 
@@ -132,7 +135,12 @@ angular.module('myApp.controllers', [])
         active: false
       , complete: true
       })
-      $location.path('/tasks')
+      var r=confirm('Start next task: ' + $scope.nextTask.title);
+      if (r==true) {
+        $location.path('/tasks/' + $scope.nextTask.id)
+      } else {
+        $location.path('/tasks')
+      }
     }
 
     // Stop functionality
@@ -141,6 +149,12 @@ angular.module('myApp.controllers', [])
       // $scope.task.active = false
       tasksFactory.updateTask($scope.task, {active: false})
       $location.path('/tasks')
+    }
+
+    // Start next task
+    $scope.startNextTask = function () {
+    //   tasksFactory.updateTask($scope.task, {active: false})
+    //   console.log($scope.nextTask.id)
     }
 
   })

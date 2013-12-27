@@ -51,7 +51,7 @@
   <section class="tasks__wrapper completed-tasks" ng-if="completedTasks.length > 0">
     <h3 class="tasks__title">Completed Todos</h3>
     <ul class="list-no-style">
-      <li ng-repeat="task in completedTasks" class="task" ng-class="{'is-overdue': task.time > task.estimate}">
+      <li ng-repeat="task in completedTasks track by $index" class="task" ng-class="{'is-overdue': task.time > task.estimate}">
         <div class="task__desc">
           <h3>{{task.title}}</h3>
           <strong>Estimate {{timePretty(task.estimate)}}</strong>

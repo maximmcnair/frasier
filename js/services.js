@@ -33,7 +33,20 @@ angular.module('myApp.services', [])
     }
 
     factory.getTask = function (id) {
-      return tasks[id]
+      for (var i = uncompletedTasks.length - 1; i >= 0; i--) {
+        if (uncompletedTasks[i].id == id) {
+          return uncompletedTasks[i]
+        }
+      }
+    }
+
+    factory.getNextTask = function (currentTaskId) {
+      // console.log('currentTaskId', currentTaskId)
+      for (var i = uncompletedTasks.length - 1; i >= 0; i--) {
+        if (uncompletedTasks[i].id == currentTaskId) {
+          return uncompletedTasks[i + 1]
+        }
+      }
     }
 
     factory.createTask = function (title, estimate) {
@@ -75,7 +88,6 @@ angular.module('myApp.services', [])
     }
 
     factory.update = function () {
-      console.log('tasks:', tasks)
       // Create cloned data
       var a = uncompletedTasks.clone()
         , b = completedTasks.clone()
@@ -108,11 +120,23 @@ angular.module('myApp.services', [])
   .value('version', '0.1');
 
 
-function clone(obj) {
-  if (null == obj || "object" != typeof obj) return obj;
-  var copy = obj.constructor();
-  for (var attr in obj) {
-    if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
-  }
-  return copy;
+// function clone(obj) {
+//   if (null == obj || "object" != typeof obj) return obj;
+//   var copy = obj.constructor();
+//   for (var attr in obj) {
+//     if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+//   }
+//   return copy;
+// }
+
+_.sortedIndexOf = function (array, obj, iterator) {
+    var result = _.sortedIndex(array, obj, iterator),
+        reference = iterator(obj);
+    if (result< array.length && iterator(array[result]) === iterator(obj)) { 
+      while(result && iterator(array[result - 1]) === reference) 
+          result--;
+      return result;
+    } else {
+      return -1;
+    }
 }
