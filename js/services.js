@@ -38,7 +38,7 @@ angular.module('myApp.services', [])
 
     factory.createTask = function (title, estimate) {
       var topID = tasks.length
-      tasks.push({
+      uncompletedTasks.push({
         id: topID
       , title: title
       , estimate: estimate
@@ -46,7 +46,7 @@ angular.module('myApp.services', [])
       , active: false
       , complete: false
       })
-      taskStorage.put(tasks)
+      factory.update()
     }
 
     factory.updateTask = function (task, changedAttr) {
@@ -71,7 +71,7 @@ angular.module('myApp.services', [])
         task[key] = changedAttr[key]
       }
 
-      taskStorage.put(tasks)
+      factory.update()
     }
 
     factory.update = function () {
@@ -88,7 +88,6 @@ angular.module('myApp.services', [])
 
       // Save updated data
       taskStorage.put(tasks)
-      console.log('tasks:', tasks)
     }
 
     return factory

@@ -26,30 +26,6 @@
 </section>
 
 <section class="tasks__container">
-
-  <section class="tasks__wrapper">
-    <!--   -->
-    <h3 class="tasks__title">Tasks</h3>
-    <ul class="list-no-style" ng-model="tasks" ui-sortable="sortableOptions" ng-if="false">
-      <li ng-repeat="task in tasks track by $index" class="task" ng-class="{'is-overdue': task.time > task.estimate}">
-        <div class="task__desc">
-          <h3>{{task.title}}</h3>
-          <strong>Estimate {{timePretty(task.estimate)}}</strong>
-        </div>
-        <div class="task__action">
-          <span class="task__time">{{timePretty(task.time)}}</span>
-          <a href="#/tasks/{{task.id}}" class="task__btn btn btn--active" ng-if="task.time === 0" ng-click="start(task)">Start</a>
-          <a href="#/tasks/{{task.id}}" class="task__btn btn btn--active" ng-if="task.time > 0" ng-click="start(task)">Continue</a>
-          <!-- <a class="btn btn-primary">Finish</a> -->
-        </div>
-      </li>
-      <li ng-if="tasks.length === 0" class="task">
-        <h3>You don't have any Tasks</h3>
-        <strong>Add a task on the right to get started</strong>
-      </li>
-    </ul>
-  </section>
-
   <section class="tasks__wrapper">
     <h3 class="tasks__title">Today Todos</h3>
     <ul class="list-no-style" ng-model="tasks" ui-sortable="sortableOptions">
