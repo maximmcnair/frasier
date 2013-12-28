@@ -3,12 +3,13 @@
 
 // Declare app level module which depends on filters, and services
 angular.module('myApp', [
-  'ngRoute',
-  'myApp.filters',
-  'myApp.services',
-  'myApp.directives',
-  'myApp.controllers',
-  'ui'
+  'ngRoute'
+, 'myApp.filters'
+, 'myApp.services'
+, 'myApp.directives'
+, 'myApp.controllers'
+, 'ui'
+, 'ui.bootstrap'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/',

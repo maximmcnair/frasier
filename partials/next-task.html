@@ -1,0 +1,15 @@
+<div class="next-task">
+  <h3 class="next-task__title">Start next task?</h3>
+  <div ng-model="nextTask" class="task" ng-click="startNextTask()">
+    <div class="task__desc">
+      <h3>{{nextTask.title}}</h3>
+      <strong>Estimate {{timePretty(nextTask.estimate)}}</strong>
+    </div>
+    <div class="task__action">
+      <span class="task__time">{{timePretty(nextTask.time)}}</span>
+      <a class="task__btn btn btn--active" ng-if="nextTask.time === 0" ng-click="start(nextTask)">Start</a>
+      <a class="task__btn btn btn--active" ng-if="nextTask.time > 0" ng-click="start(nextTask)">Continue</a>
+    </div>
+  </div>
+  <a class="btn btn--lrg btn--inverse next-task--pick" ng-click="pickTask()">or pick one yourself?</a>
+</div>

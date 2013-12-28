@@ -7,7 +7,6 @@ angular.module('myApp.controllers', [])
 //  Home controller
 //========================================================
   .controller('HomeCtrl', function() {
-
   })
 //========================================================
 //  Tasks controller
@@ -49,9 +48,27 @@ angular.module('myApp.controllers', [])
 
   })
 //========================================================
+//  Modal controller
+//========================================================
+  .controller('ModalCtrl', function ($scope, $location, nextTask, $modalInstance) {
+    $scope.nextTask = nextTask
+    console.log('nextTask:', nextTask)
+    $scope.timePretty = timePretty
+
+    $scope.start = function () {
+      $location.path('/tasks/' + nextTask.id)
+      $modalInstance.close()
+    }
+
+    $scope.pickTask = function () {
+      $location.path('/tasks/')
+      $modalInstance.close()
+    }
+  })
+//========================================================
 //  Task controller
 //========================================================
-  .controller('TaskCtrl', function($scope, tasksFactory, $routeParams, $timeout, $location) {
+  .controller('TaskCtrl', function ($scope, tasksFactory, $routeParams, $timeout, $location, $modal) {
     $scope.timePretty = timePretty
     $scope.task = tasksFactory.getTask($routeParams.taskId)
 
@@ -135,12 +152,31 @@ angular.module('myApp.controllers', [])
         active: false
       , complete: true
       })
-      var r=confirm('Start next task: ' + $scope.nextTask.title);
-      if (r==true) {
-        $location.path('/tasks/' + $scope.nextTask.id)
-      } else {
-        $location.path('/tasks')
-      }
+
+      // Ask user if they want to start next task
+      var modalInstance = $modal.open({
+        templateUrl: 'partials/next-task.html',
+        controller: 'ModalCtrl',
+        backdrop: 'static',
+        keyboard: false,
+        resolve: {
+          nextTask: function () {
+            return $scope.nextTask
+          }
+        , modalInstance: function () {
+            return $scope.modalInstance;
+          }
+        }
+      })
+      modalInstance.result.then(function (nextTask) {
+      }, function () {
+      })
+      // var r=confirm('Start next task: ' + $scope.nextTask.title);
+      // if (r==true) {
+      //   $location.path('/tasks/' + $scope.nextTask.id)
+      // } else {
+      //   $location.path('/tasks')
+      // }
     }
 
     // Stop functionality
