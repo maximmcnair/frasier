@@ -153,30 +153,29 @@ angular.module('myApp.controllers', [])
       , complete: true
       })
 
-      // Ask user if they want to start next task
-      var modalInstance = $modal.open({
-        templateUrl: 'partials/next-task.html',
-        controller: 'ModalCtrl',
-        backdrop: 'static',
-        keyboard: false,
-        resolve: {
-          nextTask: function () {
-            return $scope.nextTask
+      // If there is a next task show modal otherwise go to /tasks
+      if($scope.nextTask){
+        // Ask user if they want to start next task
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/next-task.html',
+          controller: 'ModalCtrl',
+          backdrop: 'static',
+          keyboard: false,
+          resolve: {
+            nextTask: function () {
+              return $scope.nextTask
+            }
+          , modalInstance: function () {
+              return $scope.modalInstance;
+            }
           }
-        , modalInstance: function () {
-            return $scope.modalInstance;
-          }
-        }
-      })
-      modalInstance.result.then(function (nextTask) {
-      }, function () {
-      })
-      // var r=confirm('Start next task: ' + $scope.nextTask.title);
-      // if (r==true) {
-      //   $location.path('/tasks/' + $scope.nextTask.id)
-      // } else {
-      //   $location.path('/tasks')
-      // }
+        })
+        modalInstance.result.then(function (nextTask) {
+        }, function () {
+        })
+      } else {
+        $location.path('/tasks/')
+      }
     }
 
     // Stop functionality
