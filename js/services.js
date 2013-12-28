@@ -24,6 +24,7 @@ angular.module('myApp.services', [])
     //   return tasks
     // }
 
+
     factory.getTasks = function () {
       return uncompletedTasks
     }
@@ -67,7 +68,7 @@ angular.module('myApp.services', [])
       // console.log(task, changedAttr)
 
       // Find correct task
-      var result = $.grep(tasks, function(e){
+      var result = $.grep(uncompletedTasks, function(e){
         return e.id == task.id
       })
       // console.log('result: ', result)
@@ -88,6 +89,9 @@ angular.module('myApp.services', [])
     }
 
     factory.update = function () {
+      uncompletedTasks = $filter('filter')(tasks, {complete: false})
+      completedTasks = $filter('filter')(tasks, {complete: true})
+
       // Create cloned data
       var a = uncompletedTasks.clone()
         , b = completedTasks.clone()
