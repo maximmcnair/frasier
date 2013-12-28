@@ -25,9 +25,15 @@ angular.module('myApp.controllers', [])
     };
 
     $scope.addTask = function () {
+      var estHrsVal = ($scope.newTask.estimateHrs === undefined ? 0 : $scope.newTask.estimateHrs)
+        , estMinsVal = ($scope.newTask.estimateMins === undefined ? 0 : $scope.newTask.estimateMins)
+        , estHrs = hrsToMillSec(estHrsVal)
+        , estMins = minsToMillSec(estMinsVal)
+        , estTotal = estHrs + estMins
+
       tasksFactory.createTask(
         $scope.newTask.title
-      , hrsToMillSec($scope.newTask.estimateHrs) + minsToMillSec($scope.newTask.estimateMins)
+      , estTotal
       )
 
       $scope.newTask = null

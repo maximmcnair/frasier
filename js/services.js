@@ -89,9 +89,6 @@ angular.module('myApp.services', [])
     }
 
     factory.update = function () {
-      uncompletedTasks = $filter('filter')(tasks, {complete: false})
-      completedTasks = $filter('filter')(tasks, {complete: true})
-
       // Create cloned data
       var a = uncompletedTasks.clone()
         , b = completedTasks.clone()
@@ -104,6 +101,8 @@ angular.module('myApp.services', [])
 
       // Save updated data
       taskStorage.put(tasks)
+      // uncompletedTasks = $filter('filter')(tasks, {complete: false})
+      // completedTasks = $filter('filter')(tasks, {complete: true})
     }
 
     return factory
