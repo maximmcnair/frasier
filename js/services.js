@@ -6,6 +6,20 @@
 // Demonstrate how to register services
 // In this case it is a simple value service.
 angular.module('myApp.services', [])
+  .factory('PageTitle', function() {
+    var defaultTitle = 'Frasier'
+      , title = 'Frasier'
+
+    return {
+      title: title
+    , setTitle: function (newTitle) {
+        title = newTitle
+      }
+    , setTime: function (time) {
+        title = time + ' - ' + defaultTitle
+      }
+    }
+  })
   .factory('tasksFactory', function (taskStorage, $rootScope, $filter) {
     var factory = {}
 

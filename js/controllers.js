@@ -4,14 +4,20 @@
 
 angular.module('myApp.controllers', [])
 //========================================================
+//  Title controller
+//========================================================
+  .controller('TitleCtrl', function ($scope, PageTitle) {
+    $scope.Page = PageTitle
+  })
+//========================================================
 //  Home controller
 //========================================================
-  .controller('HomeCtrl', function() {
+  .controller('HomeCtrl', function () {
   })
 //========================================================
 //  Tasks controller
 //========================================================
-  .controller('TasksCtrl', function($scope, $http, $filter, tasksFactory) {
+  .controller('TasksCtrl', function ($scope, $http, $filter, tasksFactory) {
 
     $scope.tasks = tasksFactory.getTasks()
     $scope.completedTasks = tasksFactory.getCompleted()
@@ -74,7 +80,7 @@ angular.module('myApp.controllers', [])
 //========================================================
 //  Task controller
 //========================================================
-  .controller('TaskCtrl', function ($scope, tasksFactory, $routeParams, $timeout, $location, $modal) {
+  .controller('TaskCtrl', function ($scope, tasksFactory, $routeParams, $timeout, $location, $modal, PageTitle) {
     $scope.timePretty = timePretty
     $scope.task = tasksFactory.getTask($routeParams.taskId)
 
@@ -110,6 +116,9 @@ angular.module('myApp.controllers', [])
         // Increment time
         $scope.task.time += 1000
         tasksFactory.updateTask($scope.task, {time: $scope.task.time})
+
+        // Update Page title
+        PageTitle.setTitle(timePretty($scope.task.time))
 
         // Update progress
         if($scope.task.estimate < $scope.task.time){
