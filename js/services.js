@@ -10,20 +10,22 @@ angular.module('myApp.services', [])
     var factory = {}
 
     // var tasks =
-    //   [ { id:0, title: 'Cheese fridge', estimate: 10000, time: 12302300, active: false, complete: false}
-    //   , { id:1, title: 'Cheese board two', estimate: 100000, time: 0, active: false, complete: false}
-    //   , { id:2, title: 'Cheese board three', estimate: 2300000, time: 0, active: false, complete: false}
-    //   , { id:3, title: 'Three', estimate: 0, time: 34000, active: false, complete: true}
+    //   [ { id:0, title: 'White Chocolate', estimate: 10000, time: 12302300, active: false, complete: false}
+    //   , { id:1, title: 'Dark Chocolate', estimate: 100000, time: 0, active: false, complete: false}
+    //   , { id:2, title: 'Cherry Chocolate', estimate: 2300000, time: 0, active: false, complete: false}
+    //   , { id:3, title: 'Sweet Chocolate', estimate: 0, time: 34000, active: false, complete: true}
     //   ]
 
     var tasks = taskStorage.get()
-    , uncompletedTasks = $filter('filter')(tasks, {complete: false})
-    , completedTasks = $filter('filter')(tasks, {complete: true})
+    , uncompletedTasks = []
+    , completedTasks = []
 
-    // factory.get = function () {
-    //   return tasks
-    // }
-
+    factory.updateFilters = function () {
+      uncompletedTasks = $filter('filter')(tasks, {complete: false})
+      completedTasks = $filter('filter')(tasks, {complete: true})
+    }
+    
+    factory.updateFilters()
 
     factory.getTasks = function () {
       return uncompletedTasks
@@ -64,21 +66,10 @@ angular.module('myApp.services', [])
     }
 
     factory.updateTask = function (task, changedAttr) {
-      // changedAttr = {'title': 'cheese'}
-      // console.log(task, changedAttr)
-
       // Find correct task
       var result = $.grep(uncompletedTasks, function(e){
         return e.id == task.id
       })
-      // console.log('result: ', result)
-
-      // Replace data
-      // var updateTask = clone(task)
-      // for (var key in changedAttr) {
-      //   updateTask[key] = changedAttr[key]
-      // }
-      // var updateTask = clone(task)
 
       // Replace data
       for (var key in changedAttr) {
@@ -99,8 +90,12 @@ angular.module('myApp.services', [])
       // Replace tasks with a
       tasks = a
 
+      console.log('tasks: ', _.pluck(tasks, 'title'))
+
       // Save updated data
       taskStorage.put(tasks)
+
+      factory.updateFilters()
       // uncompletedTasks = $filter('filter')(tasks, {complete: false})
       // completedTasks = $filter('filter')(tasks, {complete: true})
     }
