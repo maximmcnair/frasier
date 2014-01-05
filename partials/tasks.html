@@ -48,6 +48,9 @@
         </li>
       </ul>
     </section>
+    <div class="btn--centered" ng-if="tasks.length > 0">
+      <a class="btn btn--sm" ng-click="clearTasks()">Clear tasks</a>
+    </div>
 
     <section class="tasks__wrapper completed-tasks" ng-if="completedTasks.length > 0">
       <h3 class="tasks__title">Completed Todos</h3>
@@ -63,5 +66,8 @@
         </li>
       </ul>
     </section>
+    <div class="btn--centered" ng-if="completedTasks.length > 0">
+      <a class="btn btn--sm" ng-click="clearCompletedTasks()">Clear completed tasks</a>
+    </div>
   </section>
 </div>

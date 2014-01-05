@@ -38,7 +38,7 @@ angular.module('myApp.services', [])
       uncompletedTasks = $filter('filter')(tasks, {complete: false})
       completedTasks = $filter('filter')(tasks, {complete: true})
     }
-    
+
     factory.updateFilters()
 
     factory.getTasks = function () {
@@ -112,6 +112,16 @@ angular.module('myApp.services', [])
       factory.updateFilters()
       // uncompletedTasks = $filter('filter')(tasks, {complete: false})
       // completedTasks = $filter('filter')(tasks, {complete: true})
+    }
+
+    factory.clearTasks = function () {
+      uncompletedTasks = []
+      factory.update()
+    }
+
+    factory.clearCompletedTasks = function () {
+      completedTasks = []
+      factory.update()
     }
 
     return factory

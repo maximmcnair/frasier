@@ -58,6 +58,15 @@ angular.module('myApp.controllers', [])
     //   $scope.completedTasks = $filter('filter')($scope.tasks, {complete: true})
     // }, true)
 
+    $scope.clearTasks = function () {
+      tasksFactory.clearTasks()
+      $scope.tasks = tasksFactory.getTasks()
+    }
+    $scope.clearCompletedTasks = function () {
+      tasksFactory.clearCompletedTasks()
+      $scope.completedTasks = tasksFactory.getCompleted()
+    }
+
   })
 //========================================================
 //  Modal controller

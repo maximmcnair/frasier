@@ -35,7 +35,8 @@ blockquote cite p{font-size:15px;font-weight:800}
 .btn,button,.btn--sm{margin:0;background:#7bb7fa;padding:10px;font-size:18px;display:inline-block;-webkit-border-radius:3px;border-radius:3px;color:#fff;border:0;cursor:pointer;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;text-align:center;font-family:"proxima-nova-soft",sans-serif;font-weight:600;-webkit-transition:background ease-out .3s;-moz-transition:background ease-out .3s;-o-transition:background ease-out .3s;-ms-transition:background ease-out .3s;transition:background ease-out .3s;outline:none;}
 .btn:hover,button:hover,.btn--sm:hover,.btn:focus,button:focus,.btn--sm:focus{background-color:#95c5fb;color:#fff;outline:none}
 .btn:active,button:active,.btn--sm:active{background-color:#459af8;color:#fff;-webkit-transform:translate3d(0,1px,0);-moz-transform:translate3d(0,1px,0);-o-transform:translate3d(0,1px,0);-ms-transform:translate3d(0,1px,0);transform:translate3d(0,1px,0)}
-.btn--sm{font-size:16px;padding:10px;display:inline-block;width:auto}
+.btn--sm{font-size:13px;padding:7px 12px;display:inline-block;width:auto;background:#e7e4e4;color:#3d4349;}
+.btn--sm:hover{background:#dcd8d8;color:#3d4349}
 .btn--lrg{padding:20px;display:block;width:100%}
 .btn--primary,.task-current__finish{background:#7bb7fa;color:#fff;}
 .btn--primary:hover,.task-current__finish:hover{background:#82bbfa}
@@ -45,6 +46,7 @@ blockquote cite p{font-size:15px;font-weight:800}
 .btn--error:hover{background:#f57978}
 .btn--inverse{background:#3d4349;}
 .btn--inverse:hover{background:#363e45}
+.btn--centered{text-align:center;margin-bottom:15px}
 .input--clear,.tasks__create .form-group input,.task-current__title{outline:0;border:0}
 input{font-size:16px}
 input::-webkit-input-placeholder{color:#a2a0a0}
@@ -106,7 +108,7 @@ input:-ms-input-placeholder{color:#a2a0a0}
 .task__action{width:40%;float:left;}
 .task__action .btn{display:block;width:45%;float:right;height:40px;font-size:16px;padding-top:11px}
 .task__time{font-size:16px;font-weight:800;padding-top:13px;display:block;width:50%;float:left;text-align:right;margin-right:5%}
-.task--player{position:absolute;top:0;right:0;left:0;bottom:0;background:#00be9e}
+.task--player{position:fixed;top:0;right:0;left:0;bottom:0;background:#00be9e}
 .task-current{padding:40px 0 70px 0}
 .task-current__title,.task-current__project{text-align:center;margin:0 auto}
 .task-current__title{margin:100px auto;color:#fcfcfc;display:block;background:#00be9e;font-size:47px !important;font-family:"proxima-nova-soft",sans-serif;font-weight:800}
