@@ -2,10 +2,16 @@
   @extends .wrapper
   padding 10px 10px 0px 10px
   clearfix()
+  background #e7e4e4
+  border-radius 3px
+  padding 10px
 
 .tasks__right
   @extends .wrapper
   margin-bottom 20px
+  background #e7e4e4
+  border-radius 3px
+  padding 10px
 
 .tasks__wrapper
   margin-bottom 20px
@@ -128,6 +134,14 @@
 //==============================================================================
 //  Task in progress | ^progress ^task
 //==============================================================================
+.task--player
+  position absolute
+  top 0px
+  right 0px
+  left 0px
+  bottom 0px
+  background $colorSuccess
+
 .task-current
   padding 40px 0px 70px 0px
 
@@ -137,12 +151,13 @@
   margin 0 auto
 
 .task-current__title
-  margin-bottom 100px
-  color $colorTypePrimary
+  margin 100px auto
+  color #fcfcfc
   display block
   @extends .input--clear
-  background $colourBG
-  font-size 29px !important
+  background $colorSuccess
+  font-size 47px !important
+  font-family $primaryTypeface
   font-weight 800
 
 .task-current__pause
@@ -165,7 +180,7 @@
   width 100%
   height 8px
   display block
-  background #e7e4e4
+  background #019078
   margin-bottom 100px
   position relative
   border-radius 3px
@@ -177,7 +192,7 @@
     clearfix()
 
 .task-current__progress-bar
-  background $colorBlue
+  background #019078
   transition background .3s
   height 8px
   display block
@@ -191,23 +206,23 @@
     display block
     border-radius 50%
     content ''
-    background #e7e4e4
-    border 6px solid $colorBlue
+    background $colorGreen
+    border 6px solid #019078
     transition border .3s
     top -16px
     right -17px
 
 .is-active
   .task-current__progress-bar
-    background-color $colorGreen
+    background-color #fcfcfc
     &::after
-      border-color $colorGreen
+      border-color #fcfcfc
 
-.is-overdue
-  .task-current__progress-bar
-    background $colorRed
-    &::after
-      border-color $colorRed
+// .is-overdue
+//   .task-current__progress-bar
+//     background $colorRed
+//     &::after
+//       border-color $colorRed
 
 
 .task-current__time
@@ -220,13 +235,41 @@
   margin-right -100px
 
 .task-current__time
-  color $colorTypePrimary
+  color #fcfcfc
   font-size 18px
   font-weight 800
 
 .task-current__estimate
-  color #a2a0a0
+  color #019078
   top 34px
+  font-weight 800
+
+.task-current__pause
+.task-current__play
+  border 3px solid #fcfcfc
+  background none
+  transition all .3s
+  &:hover
+    background none
+    border-color #019078
+    color #019078
+
+.task-current__finish
+  border 3px solid #fcfcfc
+  background #fcfcfc
+  color $colorGreen
+  transition all .3s
+  &:hover
+    border-color #019078
+    background #019078
+    color $colorGreen
+
+.task-current__another
+  color #019078
+  padding-top 5px
+  display block
+  &:hover
+    color darken(#019078, 4%)
 
 @media $mediaTablet
   .task-current__progress
@@ -257,3 +300,54 @@
 .completed-tasks
   .task__time
     float right
+
+
+//==============================================================================
+//  Overdue task player | ^overdue ^task
+//==============================================================================
+.is-overdue.task--player
+  background $colorRed
+  .task-current__title
+    background $colorRed
+
+  .task-current__progress
+    background #c65d5c
+
+  .task-current__another
+    color #c65d5c
+    &:hover
+      color darken(#c65d5c, 4%)
+
+  .task-current__pause
+  .task-current__play
+    border 3px solid #fcfcfc
+    background none
+    &:hover
+      background none
+      border-color #c65d5c
+      color #c65d5c
+
+  .task-current__finish
+    border 3px solid #fcfcfc
+    background #fcfcfc
+    color $colorRed
+    transition all .3s
+    &:hover
+      border-color #c65d5c
+      background #c65d5c
+      color $colorRed
+
+  .task-current__progress-bar
+    background-color darken(#c65d5c, 4%)
+    &::after
+      border-color darken(#c65d5c, 4%)
+      background $colorRed
+
+  .task-current__estimate
+    color darken(#c65d5c, 4%)
+
+  .is-active
+    .task-current__progress-bar
+      background-color #fcfcfc
+      &::after
+        border-color #fcfcfc
