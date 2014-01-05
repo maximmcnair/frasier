@@ -31,7 +31,7 @@ blockquote cite p{font-size:15px;font-weight:800}
 ::-moz-selection{color:#fff;background:#7bb7fa;text-shadow:none}
 ::selection{color:#fff;background:#7bb7fa;text-shadow:none}
 .truncate-ellipsis{white-space:nowrap;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis;display:block}
-.wrapper,.home__right,.tasks__wrapper,.tasks__right{max-width:940px;margin:0 auto;width:90%}
+.wrapper,.home__right{max-width:940px;margin:0 auto;width:90%}
 .btn,button,.btn--sm{margin:0;background:#7bb7fa;padding:10px;font-size:18px;display:inline-block;-webkit-border-radius:3px;border-radius:3px;color:#fff;border:0;cursor:pointer;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;text-align:center;font-family:"proxima-nova-soft",sans-serif;font-weight:600;-webkit-transition:background ease-out .3s;-moz-transition:background ease-out .3s;-o-transition:background ease-out .3s;-ms-transition:background ease-out .3s;transition:background ease-out .3s;outline:none;}
 .btn:hover,button:hover,.btn--sm:hover,.btn:focus,button:focus,.btn--sm:focus{background-color:#95c5fb;color:#fff;outline:none}
 .btn:active,button:active,.btn--sm:active{background-color:#459af8;color:#fff;-webkit-transform:translate3d(0,1px,0);-moz-transform:translate3d(0,1px,0);-o-transform:translate3d(0,1px,0);-ms-transform:translate3d(0,1px,0);transform:translate3d(0,1px,0)}
@@ -104,7 +104,7 @@ input:-ms-input-placeholder{color:#a2a0a0}
 .task.is-overdue .btn{background:#f47271 !important}
 .task__desc{width:57.99999999999999%;margin-right:2%;float:left}
 .task__action{width:40%;float:left;}
-.task__action .btn{display:block;width:45%;float:right}
+.task__action .btn{display:block;width:45%;float:right;height:40px;font-size:16px;padding-top:11px}
 .task__time{font-size:16px;font-weight:800;padding-top:13px;display:block;width:50%;float:left;text-align:right;margin-right:5%}
 .task--player{position:absolute;top:0;right:0;left:0;bottom:0;background:#00be9e}
 .task-current{padding:40px 0 70px 0}
