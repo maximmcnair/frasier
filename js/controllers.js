@@ -129,6 +129,17 @@ angular.module('myApp.controllers', [])
         }
 
         // Update overdue
+        if ($scope.task.estimate === $scope.task.time) {
+          console.log('task is now overdue')
+          var audio = new Audio()
+          if(audio.canPlayType('audio/mpeg') != '') {
+            var clickSound = new Audio('/sounds/beepbeep.mp3')
+            clickSound.play()
+          } else if(audio.canPlayType('audio/ogg') != '') {
+            var clickSound = new Audio('/sounds/beepbeep.ogg')
+            clickSound.play()
+          }
+        }
         $scope.overdue = $scope.task.estimate < $scope.task.time
 
         // If task is still active loop increment
