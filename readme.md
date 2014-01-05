@@ -1,3 +1,19 @@
+# Frasier
+---
+
+## Getting started
+---
+
+```
+git clone git@github.com:maximmcnair/frasier
+cd frasier
+npm install
+bower install
+grunt
+```
+
+## Empty localstorage
+
 localStorage.setItem('frasier', '')
 localStorage.getItem('frasier')
 
