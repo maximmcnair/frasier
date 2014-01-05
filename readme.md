@@ -1,8 +1,6 @@
 # Frasier
----
 
 ## Getting started
----
 
 ```
 git clone git@github.com:maximmcnair/frasier
