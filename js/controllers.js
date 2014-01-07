@@ -70,8 +70,10 @@ angular.module('myApp.controllers', [])
     $scope.selection = []
 
     // toggle selection for a given fruit by name
-    $scope.toggleSelection = function toggleSelection(cardName) {
+    $scope.toggleSelection = function toggleSelection(cardName, estimate) {
       var idx = $scope.selection.indexOf(cardName);
+
+      console.log(estimate)
 
       // is currently selected
       if (idx > -1) {
@@ -82,21 +84,24 @@ angular.module('myApp.controllers', [])
       else {
         $scope.selection.push(cardName);
       }
-    };
+    }
 
     $scope.import = function () {
-      // console.log( _.pluck($scope.selection, 'name') )
-      // var estHrsVal = ($scope.newTask.estimateHrs === undefined ? 0 : $scope.newTask.estimateHrs)
-      //   , estMinsVal = ($scope.newTask.estimateMins === undefined ? 0 : $scope.newTask.estimateMins)
-      //   , estHrs = hrsToMillSec(estHrsVal)
-      //   , estMins = minsToMillSec(estMinsVal)
-      //   , estTotal = estHrs + estMins
+      console.log('$scope.selection:', $scope.selection)
+      console.log( _.pluck($scope.selection, 'name') )
+
 
       _.forEach($scope.selection, function (card) {
-        console.log(card.name)
+
+      var estHrsVal = (card.estimate_hrs === undefined ? 0 : card.estimate_hrs)
+        , estMinsVal = (card.estimate_mins === undefined ? 0 : card.estimate_mins)
+        , estHrs = hrsToMillSec(estHrsVal)
+        , estMins = minsToMillSec(estMinsVal)
+        , estTotal = estHrs + estMins
+
         tasksFactory.createTask(
           card.name
-        , 0
+        , estTotal
         )
         $location.path('/tasks/')
       })

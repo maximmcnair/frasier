@@ -1,3 +1,11 @@
+<h1>Choose a list</h1>
+
+<div class="spinner" ng-if="lists.length === 0">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+</div>
+
 <ul class="list-no-style" ng-model="lists">
   <li ng-repeat="list in lists track by $index">
     <a href="#/trello/list/{{list.id}}">{{list.name}}</a>

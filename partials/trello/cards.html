@@ -1,4 +1,10 @@
+<h1>Select cards and add an estimate</h1>
 
+<div class="spinner" ng-if="cards.length === 0">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+</div>
 
 <ul>
   <li ng-repeat="card in cards">
@@ -16,11 +22,11 @@
     <div hideon="mymodel">
       <strong>Estimate</strong>
       <span>Hrs</span>
-      <input type="text" placeholder="0" ng-model="estimate.hrs"/>
+      <input type="text" placeholder="0" ng-model="card.estimate_hrs"/>
       <span>Mins</span>
-      <input type="text" placeholder="00" ng-model="estimate.mins"/>
+      <input type="text" placeholder="00" ng-model="card.estimate_mins"/>
     </div>
   </li>
 </ul>
 
-<a class="btn" ng-click="import()">Import Selected</a>
+<a class="btn" ng-click="import()" ng-if="cards.length > 0">Import Selected</a>
