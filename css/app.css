@@ -47,7 +47,7 @@ blockquote cite p{font-size:15px;font-weight:800}
 .btn--inverse{background:#3d4349;}
 .btn--inverse:hover{background:#363e45}
 .btn--centered{text-align:center;margin-bottom:15px}
-.input--clear,.tasks__create .form-group input,.task-current__title{outline:0;border:0}
+.input--clear,.form-group input,.task-current__title{outline:0;border:0}
 input{font-size:16px}
 input::-webkit-input-placeholder{color:#a2a0a0}
 input:-moz-placeholder{color:#a2a0a0}
@@ -132,10 +132,10 @@ input:-ms-input-placeholder{color:#a2a0a0}
 @media screen and (max-width: 800px){.tasks__right{display:block}
 }@media screen and (min-width: 800px){.tasks__container{width:57.446808510638306%;float:left;margin-right:2.127659574468085%}
 .tasks__right{width:40.42553191489361%;float:right;display:block}
-}.tasks__create .form-group{background:#fff;margin-bottom:10px;-webkit-border-radius:3px;border-radius:3px;padding:10px;zoom:1;}
-.tasks__create .form-group:before,.tasks__create .form-group:after{content:"";display:table}
-.tasks__create .form-group:after{clear:both}
-.tasks__create .form-group strong{color:#3d4349;font-weight:800;font-size:16px;text-transform:uppercase;width:27.77777777777778%;margin-right:2.7777777777777777%;text-align:right;display:block;float:left;padding-top:2px}
+}.form-group{background:#fff;margin-bottom:10px;-webkit-border-radius:3px;border-radius:3px;padding:10px;zoom:1;}
+.form-group:before,.form-group:after{content:"";display:table}
+.form-group:after{clear:both}
+.form-group strong{color:#3d4349;font-weight:800;font-size:16px;text-transform:uppercase;width:27.77777777777778%;margin-right:2.7777777777777777%;text-align:right;display:block;float:left;padding-top:2px}
 .task__create__title{display:block;width:69.44444444444444%;float:left}
 .input__estimate__label{width:27.77777777777778%;margin-right:2.7777777777777777%;padding-top:2px}
 .input__estimate__hrs-input,.input__estimate__mins-input{width:9.722222222222223%;float:left;margin:0 10px 0 0;text-align:right}
@@ -145,6 +145,7 @@ input:-ms-input-placeholder{color:#a2a0a0}
 .task{background:#fff;padding:10px;margin-bottom:10px;-webkit-border-radius:3px;border-radius:3px;zoom:1;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
 .task:before,.task:after{content:"";display:table}
 .task:after{clear:both}
+.task input{float:left;margin-right:8px}
 .task h3{color:#3d4349;font-size:18px}
 .task strong{color:#a2a0a0;font-size:14px}
 .task.is-overdue .btn{background:#f47271 !important}
@@ -152,6 +153,7 @@ input:-ms-input-placeholder{color:#a2a0a0}
 .task__action{width:40%;float:left;}
 .task__action .btn{display:block;width:45%;float:right;height:40px;font-size:16px;padding-top:11px}
 .task__time{font-size:16px;font-weight:800;padding-top:13px;display:block;width:50%;float:left;text-align:right;margin-right:5%}
+.trello__estimate{margin-bottom:0;padding:10px 0 5px 0}
 .task--player{position:fixed;top:0;right:0;left:0;bottom:0;background:#00be9e}
 .task-current{padding:40px 0 70px 0}
 .task-current__title,.task-current__project{text-align:center;margin:0 auto}

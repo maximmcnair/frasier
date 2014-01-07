@@ -32,32 +32,31 @@
     float right
     display block
 
-.tasks__create
-  .form-group
-    background #ffffff
-    margin-bottom 10px
-    border-radius 3px
-    padding 10px
-    clearfix()
-    strong
-      color $colorTypePrimary
-      font-weight 800
-      font-size 16px
-      text-transform uppercase
-      width responsive(100, 360)
-      margin-right responsive(10, 360)
-      text-align right
-      display block
-      float left
-      padding-top 2px
-    input
-      @extends .input--clear
+// .tasks__create
+.form-group
+  background #ffffff
+  margin-bottom 10px
+  border-radius 3px
+  padding 10px
+  clearfix()
+  strong
+    color $colorTypePrimary
+    font-weight 800
+    font-size 16px
+    text-transform uppercase
+    width responsive(100, 360)
+    margin-right responsive(10, 360)
+    text-align right
+    display block
+    float left
+    padding-top 2px
+  input
+    @extends .input--clear
 
 .task__create__title
   display block
   width responsive(250, 360)
   float left
-
 //==============================================================================
 //  Estimate input | ^estimate ^input ^task
 //==============================================================================
@@ -97,6 +96,9 @@
   border-radius 3px
   clearfix()
   user-select(none)
+  input
+    float: left;
+    margin-right: 8px;
   h3
     color #3d4349
     font-size 18px
@@ -133,6 +135,14 @@
   float left
   text-align right
   margin-right responsive(10, 200)
+
+
+//==============================================================================
+//  Estimate Trello | ^
+//==============================================================================
+.trello__estimate
+  margin-bottom 0px
+  padding 10px 0px 5px 0px
 
 //==============================================================================
 //  Task in progress | ^progress ^task

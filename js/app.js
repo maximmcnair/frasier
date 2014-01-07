@@ -10,6 +10,7 @@ angular.module('myApp', [
 , 'myApp.controllers'
 , 'ui'
 , 'ui.bootstrap'
+, 'angularMoment'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/',

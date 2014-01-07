@@ -7,7 +7,7 @@ angular.module('myApp.controllers', [])
 //  Trello controllers
 //========================================================
   .controller('TrelloBoardsCtrl', function ($scope) {
-    $scope.boards = []
+    $scope.boards = undefined
     var opts = {
       type: 'popup'
     , name: 'Frasier'
@@ -27,7 +27,8 @@ angular.module('myApp.controllers', [])
     Trello.authorize(opts)
   })
   .controller('TrelloBoardCtrl', function ($scope, $routeParams) {
-    $scope.lists = []
+    $scope.lists = undefined
+    $scope.moment = moment()
     var opts = {
       type: 'popup'
     , name: 'Frasier'
@@ -47,7 +48,7 @@ angular.module('myApp.controllers', [])
     Trello.authorize(opts)
   })
   .controller('TrelloListCtrl', function ($scope, $routeParams, $location, tasksFactory) {
-    $scope.cards = []
+    $scope.cards = undefined
     var opts = {
       type: 'popup'
     , name: 'Frasier'

@@ -1,13 +1,24 @@
-<h1>Choose a board</h1>
+<div class="wrapper">
+  <h1>Choose a board</h1>
 
-<div class="spinner" ng-if="boards.length === 0">
-  <div class="bounce1"></div>
-  <div class="bounce2"></div>
-  <div class="bounce3"></div>
+  <div class="spinner" ng-if="boards.length === undefined">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+  </div>
+
+  <div class="task" ng-if="boards.length === 0">
+    <h3>This list has no boards</h3>
+  </div>
+
+  <ul class="list-no-style" ng-model="boards">
+    <li ng-repeat="board in boards track by $index" class="task" ng-if="!board.closed">
+      <a href="#/trello/board/{{board.id}}">
+        <div class="task__desc">
+          <h3>{{board.name}}</h3>
+          <strong ng-if="board.dateLastActivity">Last Active <span am-time-ago="board.dateLastActivity"></span>
+        </div>
+      </a>
+    </li>
+  </ul>
 </div>
-
-<ul class="list-no-style" ng-model="boards">
-  <li ng-repeat="board in boards track by $index">
-    <a href="#/trello/board/{{board.id}}" ng-if="!board.closed">{{board.name}}</a>
-  </li>
-</ul>
