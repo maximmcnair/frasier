@@ -13,8 +13,13 @@
     <h3>This list has no lists</h3>
   </div>
 
+  <!-- <label ng-if="lists.length > 0">
+    <strong>Search: </strong>
+    <input ng-model="searchText">
+  </label> -->
+
   <ul class="list-no-style" ng-model="lists">
-    <li ng-repeat="list in lists track by $index" class="task">
+    <li ng-repeat="list in lists | filter:searchText" class="task">
       <a href="#/trello/list/{{list.id}}">
         <div class="task__desc">
           <h3>{{list.name}}</h3>

@@ -11,8 +11,14 @@
     <h3>This list has no boards</h3>
   </div>
 
+
+  <!-- <label ng-if="boards.length > 0">
+    <strong>Search: </strong>
+    <input type="text" ng-model="searchText">
+  </label> -->
+
   <ul class="list-no-style" ng-model="boards">
-    <li ng-repeat="board in boards track by $index" class="task" ng-if="!board.closed">
+    <li ng-repeat="board in boards | filter:searchText" class="task" ng-if="!board.closed">
       <a href="#/trello/board/{{board.id}}">
         <div class="task__desc">
           <h3>{{board.name}}</h3>
