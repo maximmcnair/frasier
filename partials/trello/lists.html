@@ -1,5 +1,5 @@
 <ul class="list-no-style" ng-model="lists">
   <li ng-repeat="list in lists track by $index">
-    <a ng-click="openList(list.id)">{{list.name}}</a>
+    <a href="#/trello/list/{{list.id}}">{{list.name}}</a>
   </li>
 </ul>

@@ -1,5 +1,5 @@
 <ul class="list-no-style" ng-model="boards">
   <li ng-repeat="board in boards track by $index">
-    <a ng-click="openBoard(board.id)" ng-if="!board.closed">{{board.name}}</a>
+    <a href="#/trello/board/{{board.id}}" ng-if="!board.closed">{{board.name}}</a>
   </li>
 </ul>

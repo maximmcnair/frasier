@@ -6,75 +6,72 @@ angular.module('myApp.controllers', [])
 //========================================================
 //  Trello controllers
 //========================================================
-  .controller('TrelloBoardsCtrl', function ($scope, boards, $modalInstance, $modal) {
-    $scope.boards = boards
-
-    $scope.openBoard = function (boardId) {
-      $modalInstance.close()
-      console.log(boardId)
-      Trello.get( '/boards/' + boardId + '/lists', function(lists){
-        console.log('lists', lists)
-        console.log( _.pluck(lists, 'name') )
-        // Ask user if they want to start next task
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/trello/lists.html',
-          controller: 'TrelloListsCtrl',
-          backdrop: 'static',
-          keyboard: false,
-          resolve: {
-            lists: function () {
-              return lists
-            }
-          , modalInstance: function () {
-              return $scope.modalInstance;
-            }
-          }
+  .controller('TrelloBoardsCtrl', function ($scope) {
+    $scope.boards = []
+    var opts = {
+      type: 'popup'
+    , name: 'Frasier'
+    , success: function (response) {
+        Trello.get( 'members/me/boards', function(boards){
+          console.log('boards', boards)
+          console.log( _.pluck(boards, 'name') )
+          $scope.$apply(function () {
+            $scope.boards = boards
+          })
         })
-        modalInstance.result.then(function (nextTask) {
-        }, function () {
-        })
-      })
+      }
+    , error: function (response) {
+        console.log('error', response)
+      }
     }
+    Trello.authorize(opts)
   })
-  .controller('TrelloListsCtrl', function ($scope, lists, $modalInstance, $modal) {
-    $scope.lists = lists
-
-    $scope.openList = function (listId) {
-      $modalInstance.close()
-      console.log(listId)
-      Trello.get( '/lists/' + listId + '/cards', function(cards){
-        console.log('cards', cards)
-        console.log( _.pluck(cards, 'name') )
-        // Ask user if they want to start next task
-        var modalInstance = $modal.open({
-          templateUrl: 'partials/trello/cards.html',
-          controller: 'TrelloCardsCtrl',
-          backdrop: 'static',
-          keyboard: false,
-          resolve: {
-            cards: function () {
-              return cards
-            }
-          , modalInstance: function () {
-              return $scope.modalInstance;
-            }
-          }
+  .controller('TrelloBoardCtrl', function ($scope, $routeParams) {
+    $scope.lists = []
+    var opts = {
+      type: 'popup'
+    , name: 'Frasier'
+    , success: function (response) {
+        Trello.get('/boards/' + $routeParams.boardId + '/lists', function(lists){
+          console.log('lists', lists)
+          console.log( _.pluck(lists, 'name') )
+          $scope.$apply(function () {
+            $scope.lists = lists
+          })
         })
-        modalInstance.result.then(function (nextTask) {
-        }, function () {
-        })
-      })
+      }
+    , error: function (response) {
+        console.log('error', response)
+      }
     }
+    Trello.authorize(opts)
   })
-  .controller('TrelloCardsCtrl', function ($scope, cards, $modalInstance, $modal, tasksFactory) {
-    $scope.cards = cards
+  .controller('TrelloListCtrl', function ($scope, $routeParams, $location, tasksFactory) {
+    $scope.cards = []
+    var opts = {
+      type: 'popup'
+    , name: 'Frasier'
+    , success: function (response) {
+        Trello.get('/lists/' + $routeParams.listId + '/cards', function(cards){
+          console.log('cards', cards)
+          console.log( _.pluck(cards, 'name') )
+          $scope.$apply(function () {
+            $scope.cards = cards
+          })
+        })
+      }
+    , error: function (response) {
+        console.log('error', response)
+      }
+    }
+    Trello.authorize(opts)
 
     // selected cards
     $scope.selection = []
 
     // toggle selection for a given fruit by name
-    $scope.toggleSelection = function toggleSelection(fruitName) {
-      var idx = $scope.selection.indexOf(fruitName);
+    $scope.toggleSelection = function toggleSelection(cardName) {
+      var idx = $scope.selection.indexOf(cardName);
 
       // is currently selected
       if (idx > -1) {
@@ -83,7 +80,7 @@ angular.module('myApp.controllers', [])
 
       // is newly selected
       else {
-        $scope.selection.push(fruitName);
+        $scope.selection.push(cardName);
       }
     };
 
@@ -101,8 +98,8 @@ angular.module('myApp.controllers', [])
           card.name
         , 0
         )
+        $location.path('/tasks/')
       })
-      $modalInstance.close()
     }
   })
 //========================================================
@@ -189,43 +186,6 @@ angular.module('myApp.controllers', [])
     $scope.clearCompletedTasks = function () {
       tasksFactory.clearCompletedTasks()
       $scope.completedTasks = tasksFactory.getCompleted()
-    }
-
-
-    $scope.trelloImport = function () {
-      var opts = {
-        type: 'popup'
-      , name: 'Frasier'
-      , success: function (response) {
-          // Get user boards
-          Trello.get( 'members/me/boards', function(boards){
-            console.log('boards', boards)
-            console.log( _.pluck(boards, 'name') )
-            // Ask user if they want to start next task
-            var modalInstance = $modal.open({
-              templateUrl: 'partials/trello/boards.html',
-              controller: 'TrelloBoardsCtrl',
-              backdrop: 'static',
-              keyboard: false,
-              resolve: {
-                boards: function () {
-                  return boards
-                }
-              , modalInstance: function () {
-                  return $scope.modalInstance;
-                }
-              }
-            })
-            modalInstance.result.then(function (nextTask) {
-            }, function () {
-            })
-          })
-        }
-      , error: function (response) {
-          console.log('error', response)
-        }
-      }
-      Trello.authorize(opts)
     }
   })
 //========================================================
