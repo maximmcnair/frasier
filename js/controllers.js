@@ -4,6 +4,108 @@
 
 angular.module('myApp.controllers', [])
 //========================================================
+//  Trello controllers
+//========================================================
+  .controller('TrelloBoardsCtrl', function ($scope, boards, $modalInstance, $modal) {
+    $scope.boards = boards
+
+    $scope.openBoard = function (boardId) {
+      $modalInstance.close()
+      console.log(boardId)
+      Trello.get( '/boards/' + boardId + '/lists', function(lists){
+        console.log('lists', lists)
+        console.log( _.pluck(lists, 'name') )
+        // Ask user if they want to start next task
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/trello/lists.html',
+          controller: 'TrelloListsCtrl',
+          backdrop: 'static',
+          keyboard: false,
+          resolve: {
+            lists: function () {
+              return lists
+            }
+          , modalInstance: function () {
+              return $scope.modalInstance;
+            }
+          }
+        })
+        modalInstance.result.then(function (nextTask) {
+        }, function () {
+        })
+      })
+    }
+  })
+  .controller('TrelloListsCtrl', function ($scope, lists, $modalInstance, $modal) {
+    $scope.lists = lists
+
+    $scope.openList = function (listId) {
+      $modalInstance.close()
+      console.log(listId)
+      Trello.get( '/lists/' + listId + '/cards', function(cards){
+        console.log('cards', cards)
+        console.log( _.pluck(cards, 'name') )
+        // Ask user if they want to start next task
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/trello/cards.html',
+          controller: 'TrelloCardsCtrl',
+          backdrop: 'static',
+          keyboard: false,
+          resolve: {
+            cards: function () {
+              return cards
+            }
+          , modalInstance: function () {
+              return $scope.modalInstance;
+            }
+          }
+        })
+        modalInstance.result.then(function (nextTask) {
+        }, function () {
+        })
+      })
+    }
+  })
+  .controller('TrelloCardsCtrl', function ($scope, cards, $modalInstance, $modal, tasksFactory) {
+    $scope.cards = cards
+
+    // selected cards
+    $scope.selection = []
+
+    // toggle selection for a given fruit by name
+    $scope.toggleSelection = function toggleSelection(fruitName) {
+      var idx = $scope.selection.indexOf(fruitName);
+
+      // is currently selected
+      if (idx > -1) {
+        $scope.selection.splice(idx, 1);
+      }
+
+      // is newly selected
+      else {
+        $scope.selection.push(fruitName);
+      }
+    };
+
+    $scope.import = function () {
+      // console.log( _.pluck($scope.selection, 'name') )
+      // var estHrsVal = ($scope.newTask.estimateHrs === undefined ? 0 : $scope.newTask.estimateHrs)
+      //   , estMinsVal = ($scope.newTask.estimateMins === undefined ? 0 : $scope.newTask.estimateMins)
+      //   , estHrs = hrsToMillSec(estHrsVal)
+      //   , estMins = minsToMillSec(estMinsVal)
+      //   , estTotal = estHrs + estMins
+
+      _.forEach($scope.selection, function (card) {
+        console.log(card.name)
+        tasksFactory.createTask(
+          card.name
+        , 0
+        )
+      })
+      $modalInstance.close()
+    }
+  })
+//========================================================
 //  Title controller
 //========================================================
   .controller('TitleCtrl', function ($scope, PageTitle) {
@@ -12,12 +114,34 @@ angular.module('myApp.controllers', [])
 //========================================================
 //  Home controller
 //========================================================
-  .controller('HomeCtrl', function () {
+  .controller('HomeCtrl', function ($scope, $modal) {
+
+  })
+//========================================================
+//  Demo controller
+//========================================================
+  .controller('DemoCtrl', function ($scope, $modal) {
+    var opts = {
+      type: 'popup'
+    , name: 'Frasier'
+    , success: function (response) {
+        // Get user boards
+        Trello.get( '/lists/' + '52bd538e25a23d6a7002bad7' + '/cards', function(cards){
+          console.log('cards', cards)
+          console.log( _.pluck(cards, 'name') )
+          $scope.cards = cards
+        })
+      }
+    , error: function (response) {
+        console.log('error', response)
+      }
+    }
+    Trello.authorize(opts)
   })
 //========================================================
 //  Tasks controller
 //========================================================
-  .controller('TasksCtrl', function ($scope, $http, $filter, tasksFactory) {
+  .controller('TasksCtrl', function ($scope, $http, $filter, tasksFactory, $modal) {
 
     $scope.tasks = tasksFactory.getTasks()
     $scope.completedTasks = tasksFactory.getCompleted()
@@ -67,6 +191,42 @@ angular.module('myApp.controllers', [])
       $scope.completedTasks = tasksFactory.getCompleted()
     }
 
+
+    $scope.trelloImport = function () {
+      var opts = {
+        type: 'popup'
+      , name: 'Frasier'
+      , success: function (response) {
+          // Get user boards
+          Trello.get( 'members/me/boards', function(boards){
+            console.log('boards', boards)
+            console.log( _.pluck(boards, 'name') )
+            // Ask user if they want to start next task
+            var modalInstance = $modal.open({
+              templateUrl: 'partials/trello/boards.html',
+              controller: 'TrelloBoardsCtrl',
+              backdrop: 'static',
+              keyboard: false,
+              resolve: {
+                boards: function () {
+                  return boards
+                }
+              , modalInstance: function () {
+                  return $scope.modalInstance;
+                }
+              }
+            })
+            modalInstance.result.then(function (nextTask) {
+            }, function () {
+            })
+          })
+        }
+      , error: function (response) {
+          console.log('error', response)
+        }
+      }
+      Trello.authorize(opts)
+    }
   })
 //========================================================
 //  Modal controller
