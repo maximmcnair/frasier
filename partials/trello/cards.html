@@ -1,0 +1,15 @@
+<ul>
+  <li ng-repeat="card in cards">
+    <label>
+      <input
+        type="checkbox"
+        name="selectedCards[]"
+        value="{{card}}"
+        ng-checked="selection.indexOf(card) > -1"
+        ng-click="toggleSelection(card)"
+      > {{card.name}}
+    </label>
+  </li>
+</ul>
+
+<a class="btn" ng-click="import()">Import Selected</a>

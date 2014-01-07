@@ -1,0 +1,8 @@
+<ul class="list-no-style" ng-model="cards">
+  <li ng-repeat="card in cards track by $index">
+    <label>
+      <input type="checkbox">
+      <span>{{card.name}}</span>
+    </label>
+  </li>
+</ul>
