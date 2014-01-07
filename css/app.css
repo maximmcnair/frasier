@@ -153,7 +153,8 @@ input:-ms-input-placeholder{color:#a2a0a0}
 .task__action{width:40%;float:left;}
 .task__action .btn{display:block;width:45%;float:right;height:40px;font-size:16px;padding-top:11px}
 .task__time{font-size:16px;font-weight:800;padding-top:13px;display:block;width:50%;float:left;text-align:right;margin-right:5%}
-.trello__estimate{margin-bottom:0;padding:10px 0 5px 0}
+.trello__estimate .input__estimate{margin-bottom:0;padding:10px 0 5px 0}
+.trello__estimate .task__desc{width:100%}
 .task--player{position:fixed;top:0;right:0;left:0;bottom:0;background:#00be9e}
 .task-current{padding:40px 0 70px 0}
 .task-current__title,.task-current__project{text-align:center;margin:0 auto}

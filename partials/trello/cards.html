@@ -12,7 +12,7 @@
   </div>
 
   <ul class="list-no-style">
-    <li ng-repeat="card in cards" class="task">
+    <li ng-repeat="card in cards" class="task trello__estimate">
       <label class="task__desc">
         <input
           type="checkbox"
@@ -25,7 +25,7 @@
         <h3>{{card.name}}</h3>
       </label>
       <br/>
-      <div hideon="mymodel" class="form-group input__estimate trello__estimate">
+      <div hideon="mymodel" class="form-group input__estimate">
         <label>
           <strong class="input__estimate__label">Estimate</strong>
           <input type="text" ng-model="card.estimate_hrs" placeholder="0" class="input__estimate__mins-input">
