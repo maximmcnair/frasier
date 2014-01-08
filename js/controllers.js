@@ -94,11 +94,19 @@ angular.module('myApp.controllers', [])
 
       _.forEach($scope.selection, function (card) {
 
-      var estHrsVal = (card.estimate_hrs === undefined ? 0 : card.estimate_hrs)
-        , estMinsVal = (card.estimate_mins === undefined ? 0 : card.estimate_mins)
-        , estHrs = hrsToMillSec(estHrsVal)
-        , estMins = minsToMillSec(estMinsVal)
-        , estTotal = estHrs + estMins
+        var estHrsVal = (card.estimate_hrs === undefined ? 0 : card.estimate_hrs)
+          , estMinsVal = (card.estimate_mins === undefined ? 0 : card.estimate_mins)
+          , estHrs = hrsToMillSec(estHrsVal)
+          , estMins = minsToMillSec(estMinsVal)
+          , estTotal = estHrs + estMins
+
+        console.log('estHrsVal', estHrsVal)  
+        console.log('estMinsVal', estMinsVal)  
+        console.log('estHrs', estHrs)  
+        console.log('estMins', estMins)  
+        console.log('estTotal', estTotal)
+        console.log('*******')    
+
 
         tasksFactory.createTask(
           card.name
